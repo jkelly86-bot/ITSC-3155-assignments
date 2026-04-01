@@ -45,17 +45,87 @@ class SandwichMachine:
 
     def check_resources(self, ingredients):
         """Returns True when order can be made, False if ingredients are insufficient."""
+<<<<<<< HEAD
+=======
+        for item in ingredients:
+            if ingredients[item] > self.machine_resources[item]:
+                print(f"Sorry there is not enough {item}.")
+                return False
+        return True
+>>>>>>> b49e9305b16195f21d5596d005f2089212bdbf9b
 
     def process_coins(self):
         """Returns the total calculated from coins inserted.
            Hint: include input() function here, e.g. input("how many quarters?: ")"""
+<<<<<<< HEAD
+=======
+        print("Please insert coins.")
+        large_dollars = int(input("how many large dollars?: "))
+        half_dollars = int(input("how many half dollars?: "))
+        quarters = int(input("how many quarters?: "))
+        nickels = int(input("how many nickels?: "))
+
+        total = (
+                large_dollars * 1.0 +
+                half_dollars * 0.5 +
+                quarters * 0.25 +
+                nickels * 0.05
+        )
+
+        return total
+>>>>>>> b49e9305b16195f21d5596d005f2089212bdbf9b
 
     def transaction_result(self, coins, cost):
         """Return True when the payment is accepted, or False if money is insufficient.
            Hint: use the output of process_coins() function for cost input"""
+<<<<<<< HEAD
+=======
+        if coins < cost:
+            print("Sorry that's not enough money. Money refunded.")
+            return False
+        else:
+            change = round(coins - cost, 2)
+            print(f"Here is ${change} in change.")
+            return True
+>>>>>>> b49e9305b16195f21d5596d005f2089212bdbf9b
 
     def make_sandwich(self, sandwich_size, order_ingredients):
         """Deduct the required ingredients from the resources.
            Hint: no output"""
+<<<<<<< HEAD
 
 ### Make an instance of SandwichMachine class and write the rest of the codes ###
+=======
+        for item in order_ingredients:
+            self.machine_resources[item] -= order_ingredients[item]
+        print(f"{sandwich_size} sandwich is ready. Bon appetit!")
+
+
+### Make an instance of SandwichMachine class and write the rest of the codes ###
+machine = SandwichMachine(resources)
+is_on = True
+
+while is_on:
+    choice = input("What would you like? (small/ medium/ large/ off/ report): ").lower()
+
+    if choice == "off":
+        is_on = False
+
+    elif choice == "report":
+        print(f"Bread: {machine.machine_resources['bread']} slice(s)")
+        print(f"Ham: {machine.machine_resources['ham']} slice(s)")
+        print(f"Cheese: {machine.machine_resources['cheese']} pound(s)")
+
+    elif choice in recipes:
+        sandwich = recipes[choice]
+        ingredients = sandwich["ingredients"]
+        cost = sandwich["cost"]
+
+        if machine.check_resources(ingredients):
+            payment = machine.process_coins()
+            if machine.transaction_result(payment, cost):
+                machine.make_sandwich(choice, ingredients)
+
+    else:
+        print("Invalid choice. Please try again.")
+>>>>>>> b49e9305b16195f21d5596d005f2089212bdbf9b
